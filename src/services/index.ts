@@ -7,3 +7,4 @@ export * from "./whatsappService";
 export * from "./imageCompressionService";
 export * from "./pdfPrintService";
 export * from "./auditLogService";
+export * from "./teacherService";

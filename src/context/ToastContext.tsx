@@ -5,6 +5,7 @@ import { ToastContainer, type ToastItem, type ToastType } from "@/components/ui/
 
 export interface ToastContextValue {
   showToast: (message: string, type?: ToastType, title?: string, duration?: number) => void;
+  addToast: (options: { type?: ToastType; title?: string; message: string; duration?: number }) => void;
   success: (message: string, title?: string, duration?: number) => void;
   error: (message: string, title?: string, duration?: number) => void;
   warning: (message: string, title?: string, duration?: number) => void;
@@ -37,6 +38,13 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     [removeToast]
   );
 
+  const addToast = useCallback(
+    ({ type = "info", title, message, duration }: { type?: ToastType; title?: string; message: string; duration?: number }) => {
+      showToast(message, type, title, duration);
+    },
+    [showToast]
+  );
+
   const success = useCallback(
     (message: string, title?: string, duration?: number) => {
       showToast(message, "success", title, duration);
@@ -66,7 +74,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <ToastContext.Provider value={{ showToast, success, error, warning, info, removeToast }}>
+    <ToastContext.Provider value={{ showToast, addToast, success, error, warning, info, removeToast }}>
       {children}
       <ToastContainer toasts={toasts} onClose={removeToast} />
     </ToastContext.Provider>

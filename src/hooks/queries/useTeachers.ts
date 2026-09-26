@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { teachersRepository } from "@/repositories/teachersRepository";
-import type { Teacher } from "@/types/database";
+import type { Teacher } from "@/types/teacher";
 
 export const teachersQueryKeys = {
   all: ["teachers"] as const,
