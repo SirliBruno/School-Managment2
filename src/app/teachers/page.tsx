@@ -13,6 +13,7 @@ import {
   EditTeacherModal,
   ArchiveTeacherModal,
   TeacherProfileModal,
+  ExcelImporter,
 } from "@/components/teachers";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -49,7 +50,7 @@ function TeachersPageContent() {
 
   // Modals state
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [isExcelInfoOpen, setIsExcelInfoOpen] = useState(false);
+  const [isExcelModalOpen, setIsExcelModalOpen] = useState(false);
   const [editingTeacher, setEditingTeacher] = useState<Teacher | null>(null);
   const [archivingTeacher, setArchivingTeacher] = useState<Teacher | null>(null);
   const [viewingTeacher, setViewingTeacher] = useState<Teacher | null>(null);
@@ -178,7 +179,7 @@ function TeachersPageContent() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setIsExcelInfoOpen(true)}
+              onClick={() => setIsExcelModalOpen(true)}
               className="flex items-center gap-1.5 text-xs"
             >
               <FileSpreadsheet className="w-4 h-4 text-emerald-600" />
@@ -404,52 +405,12 @@ function TeachersPageContent() {
         }}
       />
 
-      {/* Excel Import Information Placeholder Modal */}
-      <Modal
-        isOpen={isExcelInfoOpen}
-        onClose={() => setIsExcelInfoOpen(false)}
-        title="استيراد وتصدير بيانات المعلمات (Excel / نظام نور)"
-        size="md"
-      >
-        <div className="font-cairo text-right space-y-4 pt-1" dir="rtl">
-          <div className="p-4 rounded-2xl bg-teal-50 border border-teal-200 text-teal-950 flex items-start gap-3">
-            <FileSpreadsheet className="w-8 h-8 text-teal-600 shrink-0 mt-0.5" />
-            <div className="text-xs leading-relaxed">
-              <h4 className="font-bold text-sm text-teal-900 mb-1">
-                واجهة استيراد ملفات الكادر التعليمي
-              </h4>
-              <p>
-                تم تجهيز النموذج البرمجي لقبول ملفات كشوفات المعلمات المصدرة من نظام نور
-                بصيغتي XLSX و CSV.
-              </p>
-            </div>
-          </div>
-
-          <div className="space-y-2 text-xs text-slate-600">
-            <p className="font-semibold text-slate-800">الحقول المدعومة في نموذج الاستيراد:</p>
-            <ul className="list-disc list-inside space-y-1 text-slate-500 pr-2">
-              <li>الاسم الرباعي للمعلمة</li>
-              <li>رقم الهوية الوطنية (10 أرقام)</li>
-              <li>رقم الجوال بصيغ الاتصال المحلية</li>
-              <li>التخصص ومجال التدريس والمسمى الوظيفي</li>
-            </ul>
-          </div>
-
-          <div className="p-3 bg-amber-50 rounded-xl border border-amber-200 text-amber-800 text-xs flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 shrink-0 text-amber-600" />
-            <span>
-              محرك المطابقة التلقائي واكتشاف الازدواجية (Deduplication) مجدول للتفعيل في
-              سبرينت الاستيراد الموسع.
-            </span>
-          </div>
-
-          <div className="flex justify-end pt-3 border-t border-slate-100">
-            <Button variant="primary" onClick={() => setIsExcelInfoOpen(false)}>
-              إغلاق
-            </Button>
-          </div>
-        </div>
-      </Modal>
+      {/* Excel Importer Multi-step Wizard */}
+      <ExcelImporter
+        isOpen={isExcelModalOpen}
+        onClose={() => setIsExcelModalOpen(false)}
+        onImportComplete={loadTeachers}
+      />
     </div>
   );
 }

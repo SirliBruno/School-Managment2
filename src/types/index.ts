@@ -8,6 +8,7 @@ export type {
   DeductionDecision,
   Profile,
   AuditLog,
+  ImportOperation,
 } from "./database";
 export * from "./security";
 export * from "./teacher";

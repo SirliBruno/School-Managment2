@@ -3,3 +3,4 @@ export * from "./AddTeacherModal";
 export * from "./EditTeacherModal";
 export * from "./ArchiveTeacherModal";
 export * from "./TeacherProfileModal";
+export * from "./ExcelImporter";

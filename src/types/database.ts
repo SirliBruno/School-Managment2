@@ -288,6 +288,48 @@ export type Database = {
         };
         Relationships: [];
       };
+      import_operations: {
+        Row: {
+          id: string;
+          file_name: string;
+          total_rows: number;
+          created_records: number;
+          updated_records: number;
+          merged_records: number;
+          failed_records: number;
+          created_by: string | null;
+          status: "completed" | "reverted" | "failed";
+          metadata: Json;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          file_name: string;
+          total_rows?: number;
+          created_records?: number;
+          updated_records?: number;
+          merged_records?: number;
+          failed_records?: number;
+          created_by?: string | null;
+          status?: "completed" | "reverted" | "failed";
+          metadata?: Json;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          file_name?: string;
+          total_rows?: number;
+          created_records?: number;
+          updated_records?: number;
+          merged_records?: number;
+          failed_records?: number;
+          created_by?: string | null;
+          status?: "completed" | "reverted" | "failed";
+          metadata?: Json;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;
@@ -312,3 +354,4 @@ export type DelayNotice = Database["public"]["Tables"]["delay_notices"]["Row"];
 export type DeductionDecision = Database["public"]["Tables"]["deduction_decisions"]["Row"];
 export type Profile = Database["public"]["Tables"]["profiles"]["Row"];
 export type AuditLog = Database["public"]["Tables"]["audit_logs"]["Row"];
+export type ImportOperation = Database["public"]["Tables"]["import_operations"]["Row"];
