@@ -3,6 +3,7 @@ import { Cairo } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { ToastProvider } from "@/context/ToastContext";
+import { AuthProvider } from "@/context/AuthContext";
 import { ErrorBoundary } from "@/components/common/ErrorBoundary";
 
 const cairo = Cairo({
@@ -27,9 +28,11 @@ export default function RootLayout({
       <body className="font-cairo antialiased bg-slate-50 text-slate-900 min-h-screen">
         <ErrorBoundary>
           <QueryProvider>
-            <ToastProvider>
-              {children}
-            </ToastProvider>
+            <AuthProvider>
+              <ToastProvider>
+                {children}
+              </ToastProvider>
+            </AuthProvider>
           </QueryProvider>
         </ErrorBoundary>
       </body>

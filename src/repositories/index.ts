@@ -3,3 +3,4 @@ export * from "./absenceRecordsRepository";
 export * from "./inquiriesRepository";
 export * from "./delayNoticesRepository";
 export * from "./deductionDecisionsRepository";
+export * from "./auditLogsRepository";

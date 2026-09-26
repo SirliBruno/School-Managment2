@@ -6,3 +6,4 @@ export * from "./deduplicationService";
 export * from "./whatsappService";
 export * from "./imageCompressionService";
 export * from "./pdfPrintService";
+export * from "./auditLogService";

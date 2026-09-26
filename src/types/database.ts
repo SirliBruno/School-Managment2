@@ -201,6 +201,72 @@ export type Database = {
         };
         Relationships: [];
       };
+      profiles: {
+        Row: {
+          id: string;
+          national_id: string;
+          full_name: string;
+          role: "vice_principal" | "principal" | "auditor";
+          school_name: string;
+          is_active: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id: string;
+          national_id: string;
+          full_name: string;
+          role: "vice_principal" | "principal" | "auditor";
+          school_name?: string;
+          is_active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          national_id?: string;
+          full_name?: string;
+          role?: "vice_principal" | "principal" | "auditor";
+          school_name?: string;
+          is_active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      audit_logs: {
+        Row: {
+          id: string;
+          user_id: string | null;
+          action: string;
+          entity: string;
+          entity_id: string | null;
+          timestamp: string;
+          ip_address: string | null;
+          metadata: Json;
+        };
+        Insert: {
+          id?: string;
+          user_id?: string | null;
+          action: string;
+          entity: string;
+          entity_id?: string | null;
+          timestamp?: string;
+          ip_address?: string | null;
+          metadata?: Json;
+        };
+        Update: {
+          id?: string;
+          user_id?: string | null;
+          action?: string;
+          entity?: string;
+          entity_id?: string | null;
+          timestamp?: string;
+          ip_address?: string | null;
+          metadata?: Json;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;
@@ -222,3 +288,5 @@ export type AbsenceRecord = Database["public"]["Tables"]["absence_records"]["Row
 export type Inquiry = Database["public"]["Tables"]["inquiries"]["Row"];
 export type DelayNotice = Database["public"]["Tables"]["delay_notices"]["Row"];
 export type DeductionDecision = Database["public"]["Tables"]["deduction_decisions"]["Row"];
+export type Profile = Database["public"]["Tables"]["profiles"]["Row"];
+export type AuditLog = Database["public"]["Tables"]["audit_logs"]["Row"];
