@@ -6,12 +6,12 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   Users,
-  CalendarX,
-  Clock,
   FileQuestion,
+  Clock,
   FileMinus,
-  Settings,
+  Archive,
   ShieldCheck,
+  Settings,
 } from "lucide-react";
 import { cn } from "@/utils/cn";
 import { Badge } from "@/components/ui/Badge";
@@ -20,17 +20,17 @@ export interface NavItem {
   label: string;
   href: string;
   icon: React.ComponentType<{ className?: string }>;
-  tag?: string;
+  badge?: string;
 }
 
 const navItems: NavItem[] = [
-  { label: "نظرة عامة", href: "/", icon: LayoutDashboard },
-  { label: "سجل المعلمات", href: "/teachers", icon: Users, tag: "Sprint 1" },
-  { label: "رصد الغياب", href: "/absence", icon: CalendarX, tag: "Sprint 2" },
-  { label: "سجل التأخر", href: "/delays", icon: Clock, tag: "Sprint 2" },
-  { label: "المساءلات الإدارية", href: "/inquiries", icon: FileQuestion, tag: "Sprint 3" },
-  { label: "قرارات الحسم", href: "/deductions", icon: FileMinus, tag: "Sprint 4" },
-  { label: "الإعدادات والنظام", href: "/settings", icon: Settings },
+  { label: "لوحة التحكم", href: "/", icon: LayoutDashboard },
+  { label: "المعلمات", href: "/teachers", icon: Users },
+  { label: "الغياب والمساءلات", href: "/inquiries", icon: FileQuestion },
+  { label: "التأخر والانصراف", href: "/delays", icon: Clock },
+  { label: "قرارات الحسم", href: "/deductions", icon: FileMinus },
+  { label: "الأرشيف", href: "/archive", icon: Archive },
+  { label: "إعدادات النظام", href: "/settings", icon: Settings },
 ];
 
 export function Sidebar({ className, onClose }: { className?: string; onClose?: () => void }) {
@@ -40,7 +40,7 @@ export function Sidebar({ className, onClose }: { className?: string; onClose?: 
     <aside
       dir="rtl"
       className={cn(
-        "flex h-full w-64 flex-col border-l border-slate-200 bg-white shadow-sm",
+        "flex h-full w-64 flex-col border-l border-slate-200 bg-white shadow-sm select-none",
         className
       )}
     >
@@ -83,9 +83,9 @@ export function Sidebar({ className, onClose }: { className?: string; onClose?: 
                 />
                 <span>{item.label}</span>
               </div>
-              {item.tag && (
+              {item.badge && (
                 <Badge variant={isActive ? "primary" : "neutral"} size="sm">
-                  {item.tag}
+                  {item.badge}
                 </Badge>
               )}
             </Link>
@@ -96,8 +96,8 @@ export function Sidebar({ className, onClose }: { className?: string; onClose?: 
       {/* System status footer */}
       <div className="p-4 border-t border-slate-100 bg-slate-50/50">
         <div className="flex items-center justify-between text-[11px] text-slate-500">
-          <span>معمارية النظام</span>
-          <span className="font-bold text-teal-700">Sprint 0 v1.0</span>
+          <span>نظام التصميم</span>
+          <span className="font-bold text-teal-700">Sprint 1 UX</span>
         </div>
       </div>
     </aside>

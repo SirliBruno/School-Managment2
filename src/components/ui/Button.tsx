@@ -5,7 +5,7 @@ import { Loader2 } from "lucide-react";
 import { cn } from "@/utils/cn";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline" | "danger" | "warning" | "ghost" | "link";
+  variant?: "primary" | "secondary" | "success" | "outline" | "danger" | "warning" | "ghost" | "link";
   size?: "sm" | "md" | "lg";
   isLoading?: boolean;
   leftIcon?: React.ReactNode;
@@ -15,6 +15,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 const variantStyles = {
   primary: "bg-teal-600 text-white hover:bg-teal-700 active:bg-teal-800 shadow-sm focus:ring-teal-500",
   secondary: "bg-slate-100 text-slate-800 hover:bg-slate-200 active:bg-slate-300 focus:ring-slate-400",
+  success: "bg-emerald-600 text-white hover:bg-emerald-700 active:bg-emerald-800 shadow-sm focus:ring-emerald-500",
   outline: "border border-slate-300 text-slate-700 hover:bg-slate-50 active:bg-slate-100 focus:ring-teal-500",
   danger: "bg-rose-600 text-white hover:bg-rose-700 active:bg-rose-800 shadow-sm focus:ring-rose-500",
   warning: "bg-amber-500 text-white hover:bg-amber-600 active:bg-amber-700 shadow-sm focus:ring-amber-500",
